@@ -13,8 +13,6 @@ interface Props {
 }
 
 export const StepIndicator: React.FC<Props> = ({ steps, currentStep }) => {
-
-
   return (
     <View style={styles.container}>
       {steps.map((step, index) => {
@@ -41,12 +39,18 @@ export const StepIndicator: React.FC<Props> = ({ steps, currentStep }) => {
                   <IconButton
                     icon={step.icon}
                     size={25}
-                    iconColor={isActive ? "white" : isCompleted ? "#FFF" : "#B9B9B9"}
+                    iconColor={"#FFF"}
                     style={{ margin: 0 }}
                   />
                 </View>
               </View>
-              <Text style={[styles.label, isActive && styles.activeLabel , isCompleted && styles.completedLabel]}>
+              <Text
+                style={[
+                  styles.label,
+                  isActive && styles.activeLabel,
+                  isCompleted && styles.completedLabel,
+                ]}
+              >
                 {step.label}
               </Text>
             </View>
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 50,
-    backgroundColor: "#f2f2f2",
+    backgroundColor: "#B9B9B9",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   completedLabel: {
-    color: "#354588",   
+    color: "#354588",
   },
   completedOuterCircle: {
     borderColor: "#354588",

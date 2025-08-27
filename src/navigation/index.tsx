@@ -8,6 +8,9 @@ import CaregiverHomeScreen from "../screens/Caregiver/HomeScreen";
 import SplashScreen from "../screens/SplashScreen";
 import Personal from "../screens/Onboarding/Personal";
 import Medicines from "../screens/Onboarding/Medicines";
+import ScanPrescription from "../screens/Onboarding/ScanPrescription";
+import Prescription from "../screens/Onboarding/Prescription";
+import Confirmation from "../screens/Onboarding/Confirmation";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +25,12 @@ export default function AppRoutes() {
             <Stack.Screen name="Splash" component={SplashScreen} />
             <Stack.Screen name="Personal" component={Personal} />
             <Stack.Screen name="Medicines" component={Medicines} />
+            <Stack.Screen
+              name="ScanPrescription"
+              component={ScanPrescription}
+            />
+            <Stack.Screen name="Prescription" component={Prescription} />
+            <Stack.Screen name="Confirmation" component={Confirmation} />
           </>
         ) : role === "patient" ? (
           <Stack.Screen name="PatientHome" component={PatientHomeScreen} />

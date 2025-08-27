@@ -38,7 +38,10 @@ export default function SplashScreen() {
       end={{ x: 1, y: 1 }}
       style={styles.container}
     >
-      <Image source={require("../../assets/logo.png")} style={styles.logo} />
+      <Image
+        source={require("../../assets/images/logo.png")}
+        style={styles.logo}
+      />
       <Text style={styles.title}>Remedia</Text>
       <Text style={styles.subtitle}>
         Here to help you focus on what really matters

@@ -1,21 +1,10 @@
-import {
-  View,
-  StyleSheet,
-  Text,
-  Image,
-  TouchableWithoutFeedback,
-  ScrollView,
-  KeyboardAvoidingView,
-  Keyboard,
-  Platform,
-} from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StepIndicator } from "../../components/StepIndicator";
-import { IconButton, RadioButton, TextInput } from "react-native-paper";
+import { RadioButton } from "react-native-paper";
 import React, { useState } from "react";
 import { useAppDispatch } from "../../store/hooks";
 import {
-  addPrescription,
   setAge,
   setEmergencyNumber,
   setName,
@@ -23,9 +12,10 @@ import {
   setShareMedicationHistory,
 } from "../../store/slices/onboardingSlice";
 import Label from "../../components/Label";
-import BaseButton from "../../components/Button";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../../navigation/types";
+import FormContainer from "../../components/FormContainer";
+import Input from "../../components/Input";
 
 const Personal = () => {
   const dispatch = useAppDispatch();
@@ -94,13 +84,9 @@ const Personal = () => {
         tooltip="Please enter your name"
         required
       />
-      <TextInput
-        activeOutlineColor="#5C03FF"
-        mode="outlined"
-        onChangeText={(text) => dispatch(setName(text))}
-        outlineColor="#D9D9D9"
+      <Input
+        onChangeText={(text: any) => dispatch(setName(text))}
         placeholder="Enter your name"
-        style={styles.input}
       />
     </View>
   );
@@ -112,13 +98,8 @@ const Personal = () => {
         tooltip="Please enter your age"
         required
       />
-      <TextInput
-        activeOutlineColor="#5C03FF"
-        keyboardType="numeric"
-        mode="outlined"
-        outlineColor="#D9D9D9"
+      <Input
         placeholder="Enter your age"
-        style={styles.input}
         onChangeText={(text) => dispatch(setAge(Number(text)))}
       />
     </View>
@@ -131,13 +112,8 @@ const Personal = () => {
           label="Phone number to call in case of emergency"
           tooltip="We will use this contact just if you need assistance"
         />
-        <TextInput
-          activeOutlineColor="#5C03FF"
-          keyboardType="numeric"
-          mode="outlined"
-          outlineColor="#D9D9D9"
+        <Input
           placeholder="Phone number"
-          style={styles.input}
           onChangeText={(text) => dispatch(setEmergencyNumber(text))}
         />
       </View>
@@ -177,81 +153,39 @@ const Personal = () => {
           ]}
         />
       </View>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={{ flex: 1 }}
+      <FormContainer
+        buttonTitle="Next"
+        back={personalStep > 0}
+        handleBack={handleBack}
+        title="Just a few questions so I can get to know you better."
+        subtitle="That way, I’ll be able to take better care of you."
+        onPress={() => {
+          setPersonalStep(personalStep + 1);
+          if (personalStep === 3) {
+            setCurrentStep(1);
+            navigation.navigate("Medicines", {
+              step: currentStep + 1,
+            });
+          }
+        }}
       >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <ScrollView
-            contentContainerStyle={{ flexGrow: 1 }}
-            keyboardShouldPersistTaps="handled"
-          >
-            <View style={styles.container}>
-              {personalStep !== 0 && (
-                <IconButton
-                  iconColor="#fff"
-                  icon="arrow-left-circle"
-                  selected
-                  size={45}
-                  onPress={handleBack}
-                />
-              )}
-              <Text style={styles.title}>
-                Just a few questions so I can get to know you better.
-              </Text>
-              <Text style={styles.subtitle}>
-                That way, I’ll be able to take better care of you.
-              </Text>
-              {personalStep === 0 && firstStep()}
-              {personalStep === 1 && secondStep()}
-              {personalStep === 2 && thirdStep()}
-              {personalStep === 3 && fourthStep()}
-              <View style={{ alignItems: "center", marginTop: 20 }}>
-                <BaseButton
-                  onPress={() => {
-                    setPersonalStep(personalStep + 1);
-                    if (personalStep === 3) {
-                      setCurrentStep(1);
-                      navigation.navigate("Medicines", {
-                        step: currentStep + 1,
-                      });
-                    }
-                  }}
-                >
-                  <Text>Next</Text>
-                </BaseButton>
-              </View>
-            </View>
-          </ScrollView>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
-      <Image source={require("../../../assets/img1.png")} style={styles.img} />
+        {personalStep === 0 && firstStep()}
+        {personalStep === 1 && secondStep()}
+        {personalStep === 2 && thirdStep()}
+        {personalStep === 3 && fourthStep()}
+      </FormContainer>
+      <Image
+        source={require("../../../assets/images/img1.png")}
+        style={styles.img}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    width: 371,
-    borderTopRightRadius: 25,
-    borderBottomRightRadius: 25,
-    marginTop: 30,
-    marginBottom: 50,
-    backgroundColor: "#93C5FD",
-    padding: 20,
-  },
-  title: {
-    fontSize: 32,
-    fontFamily: "Inter",
-    marginTop: 20,
-  },
-  subtitle: {
-    fontSize: 20,
-    marginTop: 10,
-  },
   wrapper: {
     marginBottom: 24,
-    marginTop: 30,
+    marginTop: 20,
   },
   inlineOptions: {
     flexDirection: "row",
@@ -271,9 +205,10 @@ const styles = StyleSheet.create({
     height: 270,
     resizeMode: "contain",
   },
-  input: {
-    height: 40,
-    borderRadius: 8,
+  backButton: {
+    position: "absolute",
+    top: 20,
+    left: 0,
   },
 });
 export default Personal;
