@@ -15,28 +15,23 @@ import Confirmation from "../screens/Onboarding/Confirmation";
 const Stack = createNativeStackNavigator();
 
 export default function AppRoutes() {
-  const role = useAppSelector((state) => state.user.role);
+  //const role = useAppSelector((state) => state.onboarding.role);
 
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {!role ? (
-          <>
-            <Stack.Screen name="Splash" component={SplashScreen} />
-            <Stack.Screen name="Personal" component={Personal} />
-            <Stack.Screen name="Medicines" component={Medicines} />
-            <Stack.Screen
-              name="ScanPrescription"
-              component={ScanPrescription}
-            />
-            <Stack.Screen name="Prescription" component={Prescription} />
-            <Stack.Screen name="Confirmation" component={Confirmation} />
-          </>
-        ) : role === "patient" ? (
-          <Stack.Screen name="PatientHome" component={PatientHomeScreen} />
-        ) : (
-          <Stack.Screen name="CaregiverHome" component={CaregiverHomeScreen} />
-        )}
+        <>
+          <Stack.Screen name="Splash" component={SplashScreen} />
+          <Stack.Screen name="Personal" component={Personal} />
+          <Stack.Screen name="Medicines" component={Medicines} />
+          <Stack.Screen name="ScanPrescription" component={ScanPrescription} />
+          <Stack.Screen name="Prescription" component={Prescription} />
+          <Stack.Screen name="Confirmation" component={Confirmation} />
+        </>
+
+        <Stack.Screen name="PatientHome" component={PatientHomeScreen} />
+
+        <Stack.Screen name="CaregiverHome" component={CaregiverHomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

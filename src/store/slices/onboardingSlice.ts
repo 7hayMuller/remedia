@@ -50,6 +50,8 @@ const onboardingSlice = createSlice({
       state.name = "";
       state.age = 0;
       state.role = null;
+      state.emergencyNumber = "";
+      state.shareMedicationHistory = false;
       state.prescriptions = [];
     },
   },

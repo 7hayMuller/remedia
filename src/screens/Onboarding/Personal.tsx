@@ -23,7 +23,8 @@ const Personal = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-  const [value, setValue] = useState<"yes" | "no" | "">("no");
+  const [value, setValue] = useState<"yes" | "no" | "">("");
+
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [personalStep, setPersonalStep] = useState<number>(
     route.params?.step ?? 0
