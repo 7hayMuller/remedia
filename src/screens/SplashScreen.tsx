@@ -17,6 +17,8 @@ export default function SplashScreen() {
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const role = useAppSelector((state) => state.user.role);
 
+  console.log(role);
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (!role) {
