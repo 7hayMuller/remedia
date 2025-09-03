@@ -41,17 +41,17 @@ const style = StyleSheet.create({
   button: {
     backgroundColor: "#6200ee",
     borderRadius: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     minHeight: 40,
-    alignSelf: "flex-start",
+    alignSelf: "center",
     justifyContent: "center",
   },
   primary: {
     backgroundColor: "#57CC99",
     borderRadius: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     minHeight: 40,
-    alignSelf: "flex-start",
+    alignSelf: "center",
   },
   dashed: {
     backgroundColor: "transparent",
@@ -59,9 +59,9 @@ const style = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#6200ee",
     borderRadius: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     minHeight: 40,
-    alignSelf: "flex-start",
+    alignSelf: "center",
   },
   dashedLabel: {
     color: "#6200ee",

@@ -6,7 +6,8 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import BaseButton from "../../components/Button";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Card } from "react-native-paper";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { setPatientRegistered } from "../../store/slices/onboardingSlice";
 
 const Confirmation = () => {
   const route = useRoute<RouteProp<RootStackParamList, "Medicines">>();
@@ -22,6 +23,7 @@ const Confirmation = () => {
   const shareMedicationHistory = useAppSelector(
     (state) => state.onboarding.shareMedicationHistory
   );
+  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -68,6 +70,7 @@ const Confirmation = () => {
                 emergencyNumber,
                 shareMedicationHistory,
               });
+              dispatch(setPatientRegistered(true));
               navigation.navigate("PatientHome");
             }}
           >

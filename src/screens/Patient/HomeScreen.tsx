@@ -5,7 +5,7 @@ import MedicationCard from "../../components/MedicationCard";
 import { Divider } from "react-native-paper";
 import MoodCard from "../../components/MoodCard";
 import Button from "../../components/Button";
-import { use } from "react";
+
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../navigation/types";

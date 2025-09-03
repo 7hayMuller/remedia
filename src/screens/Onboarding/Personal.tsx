@@ -100,6 +100,7 @@ const Personal = () => {
         required
       />
       <Input
+        keyboardType="numeric"
         placeholder="Enter your age"
         onChangeText={(text) => dispatch(setAge(Number(text)))}
       />
@@ -114,6 +115,7 @@ const Personal = () => {
           tooltip="We will use this contact just if you need assistance"
         />
         <Input
+          keyboardType="numeric"
           placeholder="Phone number"
           onChangeText={(text) => dispatch(setEmergencyNumber(text))}
         />
@@ -175,10 +177,17 @@ const Personal = () => {
         {personalStep === 2 && thirdStep()}
         {personalStep === 3 && fourthStep()}
       </FormContainer>
-      <Image
-        source={require("../../../assets/images/img1.png")}
-        style={styles.img}
-      />
+      {personalStep === 0 ? (
+        <Image
+          source={require("../../../assets/images/img1.png")}
+          style={styles.img}
+        />
+      ) : (
+        <Image
+          source={require("../../../assets/images/boy.png")}
+          style={styles.img}
+        />
+      )}
     </View>
   );
 };

@@ -10,7 +10,7 @@ export default function App() {
     "Inter-Bold": require("./assets/fonts/Inter-Bold.ttf"),
     HomemadeApple: require("./assets/fonts/HomemadeApple-Regular.ttf"),
   });
-  console.log(fontsLoaded);
+
   if (!fontsLoaded) {
     return null;
   }

@@ -4,28 +4,32 @@ import { Card, Icon } from "react-native-paper";
 const MedicationCard = ({
   disabled,
   status,
+  noTime,
 }: {
   disabled?: boolean;
   status?: "upcoming" | "taken" | "missed";
+  noTime?: boolean;
 }) => {
   return (
     <View style={styles.container}>
       <View style={styles.infoContainer}>
-        <View
-          style={[
-            styles.timeContainer,
-            disabled && { backgroundColor: "#D9D9D9" },
-          ]}
-        >
-          <Icon
-            source="clock-outline"
-            size={24}
-            color={disabled ? "#394147" : "#fff"}
-          />
-          <Text style={[styles.timeText, disabled && { color: "#394147" }]}>
-            16:00 pm
-          </Text>
-        </View>
+        {!noTime && (
+          <View
+            style={[
+              styles.timeContainer,
+              disabled && { backgroundColor: "#D9D9D9" },
+            ]}
+          >
+            <Icon
+              source="clock-outline"
+              size={24}
+              color={disabled ? "#394147" : "#fff"}
+            />
+            <Text style={[styles.timeText, disabled && { color: "#394147" }]}>
+              16:00 pm
+            </Text>
+          </View>
+        )}
         {status && (
           <View
             style={[

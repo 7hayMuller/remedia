@@ -1,14 +1,31 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import Header from "../components/Header";
-import { Divider, Icon } from "react-native-paper";
+import { Divider, Icon, IconButton } from "react-native-paper";
 import MedicationCard from "../components/MedicationCard";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../navigation/types";
 
 const MedicationHistory = () => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   return (
     <>
-      <Header back />
+      <Header />
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>Medication History</Text>
+        <View style={styles.titleContainer}>
+          <IconButton
+            iconColor="#354588"
+            icon="arrow-left-circle"
+            selected
+            size={40}
+            onPress={() => {
+              navigation.goBack();
+            }}
+          />
+          <Text style={styles.title}>Medication History</Text>
+        </View>
+
         <View>
           <Text style={styles.date}>
             <Icon source="calendar-month-outline" size={28} />
@@ -62,6 +79,11 @@ const styles = StyleSheet.create({
     color: "#394147",
     fontSize: 24,
     marginBottom: 30,
+  },
+  titleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: -20,
   },
 });
 export default MedicationHistory;

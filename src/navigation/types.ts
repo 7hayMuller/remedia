@@ -7,5 +7,6 @@ export type RootStackParamList = {
   Confirmation: { step: number } | undefined;
   PatientHome: undefined;
   MedicationHistory: undefined;
+  Prescriptions: undefined;
   CaregiverHome: undefined;
 };

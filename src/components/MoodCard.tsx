@@ -1,7 +1,23 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Linking, Alert } from "react-native";
 import Button from "./Button";
+import { useAppSelector } from "../store/hooks";
 
 const MoodCard = ({ caregiver }: { caregiver?: boolean }) => {
+  const emergencyNumber = useAppSelector(
+    (state) => state?.onboarding?.emergencyNumber ?? ""
+  );
+
+  const openDialer = async () => {
+    const url = `tel:${emergencyNumber}`;
+    const supported = await Linking.canOpenURL(url);
+
+    if (supported) {
+      await Linking.openURL(url);
+    } else {
+      Alert.alert("Erro", "Não foi possível abrir o discador");
+    }
+  };
+
   return (
     <View style={styles.card}>
       <Text style={styles.title}>
@@ -46,7 +62,7 @@ const MoodCard = ({ caregiver }: { caregiver?: boolean }) => {
         )}
       </View>
       <Button
-        onPress={() => {}}
+        onPress={openDialer}
         primary
         styles={{
           alignSelf: "center",

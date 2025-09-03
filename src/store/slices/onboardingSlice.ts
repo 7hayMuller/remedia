@@ -13,6 +13,7 @@ interface OnboardingState {
   emergencyNumber: string;
   shareMedicationHistory: boolean;
   prescriptions: Prescription[];
+  patientRegistered: boolean;
 }
 
 const initialState: OnboardingState = {
@@ -22,6 +23,7 @@ const initialState: OnboardingState = {
   emergencyNumber: "",
   shareMedicationHistory: false,
   prescriptions: [],
+  patientRegistered: false,
 };
 
 const onboardingSlice = createSlice({
@@ -46,6 +48,9 @@ const onboardingSlice = createSlice({
     addPrescription(state, action: PayloadAction<Prescription>) {
       state.prescriptions.push(action.payload);
     },
+    setPatientRegistered(state, action: PayloadAction<boolean>) {
+      state.patientRegistered = action.payload;
+    },
     clearOnboarding(state) {
       state.name = "";
       state.age = 0;
@@ -53,6 +58,7 @@ const onboardingSlice = createSlice({
       state.emergencyNumber = "";
       state.shareMedicationHistory = false;
       state.prescriptions = [];
+      state.patientRegistered = false;
     },
   },
 });
@@ -64,6 +70,7 @@ export const {
   setEmergencyNumber,
   setShareMedicationHistory,
   addPrescription,
+  setPatientRegistered,
   clearOnboarding,
 } = onboardingSlice.actions;
 

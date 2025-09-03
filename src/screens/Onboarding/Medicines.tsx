@@ -58,8 +58,8 @@ const Medicines = () => {
         <View
           style={{
             flexDirection: "row",
-            justifyContent: "space-around",
             alignItems: "center",
+            justifyContent: "center",
             marginTop: 50,
           }}
         >
@@ -70,6 +70,7 @@ const Medicines = () => {
                 step: route.params?.step ?? 0,
               });
             }}
+            styles={{ marginRight: 10 }}
           >
             <Text>Do it manually</Text>
           </BaseButton>
